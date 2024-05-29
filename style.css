@@ -1,0 +1,17 @@
+.game-area {
+	width: 80vw;
+	height: 50vh;
+	outline: 2px solid black;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	top: 50%;
+	left: 50%;
+}
+
+.plane {
+	width: 50px;
+	height: 50px;
+	background-color: red;
+	transform: translate(-50%, -50%);
+	position: absolute;
+}
