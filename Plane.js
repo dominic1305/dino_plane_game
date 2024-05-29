@@ -21,7 +21,7 @@ class Plane {
 	}
 	get OnFloor() {
 		const rect = this.BoundingBox;
-		const box = document.querySelector('.game-area').getBoundingClientRect();
+		const box = document.querySelector('.floor').getBoundingClientRect();
 
 		return (rect.bottom > box.bottom);
 	}
@@ -33,9 +33,10 @@ class Plane {
 	}
 	/**@param {{x: number, y: number}} location @param {number} jumpHeight*/
 	static CreatePlane(location, jumpHeight) {
-		const element = document.createElement('div'); //TEST: change to img
+		const element = document.createElement('img');
 		element.className = 'plane';
-		// element.src = './img/plane.'; //TODO: get img
+		element.src = './img/plane.png';
+		element.draggable = false;
 
 		element.style.top = `${location.y}px`;
 		element.style.left = `${location.x}px`;
@@ -63,7 +64,7 @@ class Plane {
 		if (!this.InBounds) throw new Error('out of bounds');
 
 		if (this.OnFloor && this.#velocity <= 0) this.#velocity = 0;
-		this.#element.style.top = (!this.OnFloor) ? `${this.Position.y - this.#velocity}px` : `${document.querySelector('.game-area').clientHeight - 50 / 2}px`;
+		this.#element.style.top = (!this.OnFloor) ? `${this.Position.y - this.#velocity}px` : `${document.querySelector('.floor').clientHeight + document.querySelector('.game-area').clientHeight - 35 - 50 / 2}px`;
 		this.#velocity -= 0.5;
 	}
 }
