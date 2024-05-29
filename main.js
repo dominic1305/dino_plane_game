@@ -3,7 +3,11 @@ let gameState = false;
 
 requestAnimationFrame(function loop() {//update loop
 	if (gameState) {
+		Tower.Spawn();
 		plane.Update();
+		for (const tower of Tower.InstaceArr) {
+			tower.Update();
+		}
 	}
 	requestAnimationFrame(loop);
 });

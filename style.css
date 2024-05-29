@@ -10,6 +10,7 @@
 }
 
 .plane {
+	z-index: 2;
 	image-rendering: pixelated;
 	height: 50px;
 	transform: translate(-50%, -50%);
@@ -40,4 +41,11 @@
 	100% {
 		right: 200%;
 	}
+}
+
+.tower {
+	z-index: 1;
+	image-rendering: pixelated;
+	position: absolute;
+	bottom: 35px;
 }

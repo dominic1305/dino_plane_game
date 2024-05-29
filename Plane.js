@@ -25,7 +25,7 @@ class Plane {
 
 		return (rect.bottom > box.bottom);
 	}
-	/**@private @param {Element} element @param {number} jumpHeight*/
+	/**@private @param {HTMLImageElement} element @param {number} jumpHeight*/
 	constructor(element, jumpHeight) {
 		this.#element = element;
 		this.#velocity = 0;
@@ -60,8 +60,22 @@ class Plane {
 			}
 		});
 	}
+	/**@returns {boolean}*/
+	#IsCollidingWithTower() {
+		if (Tower.InstaceArr.length <= 0) return false; //no towers to collide with
+
+		for (const tower of Tower.InstaceArr) {
+			const targRect = tower.BoundingBox;
+			const thisRect = this.BoundingBox;
+			return !(thisRect.top > targRect.bottom || thisRect.right < targRect.left || thisRect.bottom < targRect.top || thisRect.left > targRect.right);
+		}
+	}
 	Update() {
 		if (!this.InBounds) throw new Error('out of bounds');
+
+		if (this.#IsCollidingWithTower()) {
+			throw new Error('has collided with tower');
+		}
 
 		if (this.OnFloor && this.#velocity <= 0) this.#velocity = 0;
 		this.#element.style.top = (!this.OnFloor) ? `${this.Position.y - this.#velocity}px` : `${document.querySelector('.floor').clientHeight + document.querySelector('.game-area').clientHeight - 35 - 50 / 2}px`;
