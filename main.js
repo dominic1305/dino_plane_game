@@ -1,5 +1,5 @@
 /**@type {Plane}*/ let plane;
-let scoreBoard = ScoreBoardManager.getScoreBoard(document.querySelector('.score-board-container'));
+let scoreBoard = ScoreBoardManager.GetScoreBoard(document.querySelector('.score-board-container'));
 let gameState = false;
 
 let TIME;

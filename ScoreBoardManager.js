@@ -15,7 +15,7 @@ class ScoreBoardManager {
 		this.#highscore = highscore;
 	}
 	/**@param {HTMLDivElement} boardElement*/
-	static getScoreBoard(boardElement) {
+	static GetScoreBoard(boardElement) {
 		const highscore = Number(localStorage.getItem('highscore') ?? 0);
 
 		boardElement.querySelector('.high-score').innerHTML = `High Score: ${highscore}`;
