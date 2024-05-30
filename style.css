@@ -113,3 +113,21 @@ html, body {
 		font-size: 20px;
 	}
 }
+
+.explosion {
+	image-rendering: pixelated;
+	height: 75px;
+	z-index: 3;
+	transform: translate(-50%, -50%);
+	position: absolute;
+}
+
+.sfx-toggle-container {
+	position: absolute;
+	top: 75vh;
+	left: 10vw;
+}
+
+.sfx-toggle {
+	cursor: pointer;
+}
