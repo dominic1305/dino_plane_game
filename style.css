@@ -62,3 +62,25 @@ html, body {
 	background-color: #00000020;
 	position: absolute;
 }
+
+.score-board-container {
+	text-transform: capitalize;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	z-index: 5;
+	position: absolute;
+	right: 5px;
+	top: 5px;
+	font-weight: bolder;
+	padding: 2px 5px;
+	background-color: #ffffff7f;
+}
+
+.score {
+	font-size: 20px;
+}
+
+.high-score {
+	font-size: 15px;
+}

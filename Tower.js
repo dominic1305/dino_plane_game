@@ -4,6 +4,7 @@ class Tower {
 	#element;
 	#velocity;
 	#active = false;
+	#hasPassed = false;
 	static get InstaceArr() {
 		return Object.freeze(Tower.#instanceArr.map(bin => Object.freeze(bin)));
 	}
@@ -24,12 +25,12 @@ class Tower {
 	}
 	/**@private @param {HTMLImageElement} element @param {number} velocity*/
 	constructor(element, velocity) {
-		this.#element = element
-		this.#velocity = velocity
+		this.#element = element;
+		this.#velocity = velocity;
 	}
 	static Spawn() {
 		if (this.#timer-- > 0) return;
-		this.#timer = Math.floor(Math.random() * (600 - 300) + 300); //randamise spawn delay
+		this.#timer = Math.floor(Math.random() * (400 - 200) + 200); //randamise spawn delay
 
 		const element = document.createElement('img');
 		element.className = 'tower';
@@ -44,6 +45,12 @@ class Tower {
 		const tower = new Tower(element, Math.floor(Math.random() * (6 - 4) + 4));
 		this.#instanceArr.push(tower);
 	}
+	#HasPassedPlane() {
+		const thisRect = this.BoundingBox;
+		const targRect = plane.BoundingBox;
+
+		return (targRect.left > thisRect.right);
+	}
 	dispose() {
 		this.#element.parentElement.removeChild(this.#element);
 		Tower.#instanceArr.splice(Tower.#instanceArr.indexOf(this), 1);
@@ -51,6 +58,11 @@ class Tower {
 	Update() {
 		if (this.InBounds && !this.#active) this.#active = true;
 		if (!this.InBounds && this.#active) this.dispose();
+
+		if (this.#HasPassedPlane() && !this.#hasPassed) {//has passed the plane for the first time
+			//TODO: play audio here
+			this.#hasPassed = true;
+		}
 
 		this.#element.style.left = `${this.Position.x - this.#velocity}px`;
 	}
