@@ -35,3 +35,20 @@ window.onload = () => {//start game
 	plane = Plane.CreatePlane({ x: 200, y: 200 }, 11);
 	gameState = true;
 }
+
+function HandlePostGame() {
+	gameState = false;
+
+	document.body.appendChild(document.querySelector('#game-over-menu-template').content.cloneNode(true));
+	const element = document.querySelector('.game-over-menu');
+
+	element.querySelector('img').addEventListener('click', () => {
+		location.reload();
+	});
+
+	document.addEventListener('keyup', (e) => {
+		if (e.key == 'Enter') {
+			location.reload();
+		}
+	});
+}

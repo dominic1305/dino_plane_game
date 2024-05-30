@@ -84,3 +84,32 @@ html, body {
 .high-score {
 	font-size: 15px;
 }
+
+.game-over-menu {
+	height: max-content;
+	width: max-content;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	align-content: center;
+	flex-wrap: nowrap;
+	gap: 10px;
+	padding: 10px 15px;
+	background-color: white;
+	border: 2px solid black;
+	border-radius: 15px;
+	transform: translate(-50%, -50%);
+	position: absolute;
+	left: 50%;
+	top: 50%;
+	& img {
+		cursor: pointer;
+		height: 50px;
+	}
+	& p {
+		margin: 0;
+		text-transform: capitalize;
+		user-select: none;
+		font-size: 20px;
+	}
+}

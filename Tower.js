@@ -1,6 +1,6 @@
 class Tower {
 	/**@type {Tower[]}*/ static #instanceArr = [];
-	static #timer = 300;
+	static #timer = 200;
 	#element;
 	#velocity;
 	#active = false;

@@ -59,6 +59,8 @@ class Plane {
 	}
 	#AddUserControl() {
 		document.body.addEventListener('keydown', (e) => {//compute actions on key press
+			if (!gameState) return;
+
 			switch (e.key) {
 				case ' ': {//jump on space
 					if (!this.OnFloor) return;
@@ -73,9 +75,7 @@ class Plane {
 	Update() {
 		if (!this.InBounds) throw new Error('out of bounds');
 
-		if (this.IsCollidingWithTower) {
-			throw new Error('has collided with tower');
-		}
+		if (this.IsCollidingWithTower) return HandlePostGame();
 
 		if (this.OnFloor && this.#velocity <= 0) this.#velocity = 0;
 		this.#element.style.top = (!this.OnFloor) ? `${this.Position.y - this.#velocity}px` : `${document.querySelector('.floor').clientHeight + document.querySelector('.game-area').clientHeight - 35 - 50 / 2}px`;
