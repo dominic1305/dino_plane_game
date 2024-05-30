@@ -60,7 +60,7 @@ class Tower {
 		if (!this.InBounds && this.#active) this.dispose();
 
 		if (this.#HasPassedPlane() && !this.#hasPassed) {//has passed the plane for the first time
-			//TODO: play audio here
+			audioController.Play('point');
 			this.#hasPassed = true;
 		}
 

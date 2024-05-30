@@ -64,6 +64,7 @@ class Plane {
 					if (!this.OnFloor) return;
 					this.#velocity = this.#jumpHeight;
 					this.#element.style.top = `${this.Position.y - this.#velocity}px`; //force a jump so you don't get stuck to the floor
+					audioController.Play('jump');
 					break;
 				}
 			}
