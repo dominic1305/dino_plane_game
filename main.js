@@ -1,8 +1,12 @@
 /**@type {Plane}*/ let plane;
 let gameState = false;
 
-requestAnimationFrame(function loop() {//update loop
-	if (gameState) {
+let TIME;
+requestAnimationFrame(function loop(time) {//update loop
+	if (gameState && time != null) {
+		document.querySelector('.fps-counter').innerHTML = `${Math.round(1000 / (time - TIME))}fps`;
+		TIME = time;
+
 		Tower.Spawn();
 		plane.Update();
 		for (const tower of Tower.InstaceArr) {

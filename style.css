@@ -1,3 +1,7 @@
+html, body {
+	font-family: sans-serif;
+}
+
 .game-area {
 	width: 80vw;
 	height: 50vh;
@@ -48,4 +52,13 @@
 	image-rendering: pixelated;
 	position: absolute;
 	bottom: 35px;
+}
+
+.fps-counter {
+	margin: 5px 0px 0px 5px;
+	-webkit-text-stroke-width: 1px;
+	-webkit-text-stroke-color: #0000003f;
+	color: #00ff00;
+	background-color: #00000020;
+	position: absolute;
 }

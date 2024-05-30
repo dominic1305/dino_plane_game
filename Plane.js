@@ -25,6 +25,15 @@ class Plane {
 
 		return (rect.bottom > box.bottom);
 	}
+	get IsCollidingWithTower() {
+		for (const tower of Tower.InstaceArr) {
+			const targRect = tower.BoundingBox;
+			const thisRect = this.BoundingBox;
+			return !(thisRect.top > targRect.bottom || thisRect.right < targRect.left || thisRect.bottom < targRect.top || thisRect.left > targRect.right);
+		}
+
+		return false; //no towers for found to collide
+	}
 	/**@private @param {HTMLImageElement} element @param {number} jumpHeight*/
 	constructor(element, jumpHeight) {
 		this.#element = element;
@@ -54,26 +63,16 @@ class Plane {
 				case ' ': {//jump on space
 					if (!this.OnFloor) return;
 					this.#velocity = this.#jumpHeight;
-					this.#element.style.top = `${this.Position.y - this.#velocity}px`;
+					this.#element.style.top = `${this.Position.y - this.#velocity}px`; //force a jump so you don't get stuck to the floor
 					break;
 				}
 			}
 		});
 	}
-	/**@returns {boolean}*/
-	#IsCollidingWithTower() {
-		if (Tower.InstaceArr.length <= 0) return false; //no towers to collide with
-
-		for (const tower of Tower.InstaceArr) {
-			const targRect = tower.BoundingBox;
-			const thisRect = this.BoundingBox;
-			return !(thisRect.top > targRect.bottom || thisRect.right < targRect.left || thisRect.bottom < targRect.top || thisRect.left > targRect.right);
-		}
-	}
 	Update() {
 		if (!this.InBounds) throw new Error('out of bounds');
 
-		if (this.#IsCollidingWithTower()) {
+		if (this.IsCollidingWithTower) {
 			throw new Error('has collided with tower');
 		}
 
