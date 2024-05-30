@@ -1,5 +1,17 @@
 /**@type {Plane}*/ let plane;
 let scoreBoard = ScoreBoardManager.GetScoreBoard(document.querySelector('.score-board-container'));
+let audioController = AudioManager.GetAudioManager(
+	{
+		alias: 'point',
+		filename: './sfx/point.wav',
+		volume: 1
+	},
+	{
+		alias: 'jump',
+		filename: './sfx/jump.wav',
+		volume: 1
+	}
+);
 let gameState = false;
 
 let TIME;
